@@ -64,10 +64,6 @@ resource "aws_security_group" "default" {
   }
 }
 
-data "aws_route53_zone" "domain" {
-  zone_id = "${var.zone_id}"
-}
-
 data "template_file" "user_data" {
   template = "${file("${path.module}/user_data.sh")}"
 
@@ -98,14 +94,4 @@ resource "aws_instance" "default" {
   subnet_id = "${var.subnets[0]}"
 
   tags = "${module.label.tags}"
-}
-
-module "dns" {
-  source    = "git::https://github.com/cloudposse/terraform-aws-route53-cluster-hostname.git?ref=tags/0.1.1"
-  namespace = "${var.namespace}"
-  name      = "${var.name}"
-  stage     = "${var.stage}"
-  zone_id   = "${var.zone_id}"
-  ttl       = 60
-  records   = ["${aws_instance.default.public_dns}"]
 }

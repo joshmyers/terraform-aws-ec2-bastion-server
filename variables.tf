@@ -10,10 +10,6 @@ variable "name" {
   default = "bastion"
 }
 
-variable "zone_id" {
-  default = ""
-}
-
 variable "instance_type" {
   default = "t2.micro"
 }
