@@ -14,6 +14,14 @@ variable "instance_type" {
   default = "t2.micro"
 }
 
+variable "hostname" {
+  default = ""
+}
+
+variable "search_domains" {
+  default = ""
+}
+
 variable "ami" {
   default = "ami-efd0428f"
 }

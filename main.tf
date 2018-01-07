@@ -70,8 +70,8 @@ data "template_file" "user_data" {
   vars {
     user_data       = "${join("\n", var.user_data)}"
     welcome_message = "${var.stage}"
-    hostname        = "${var.name}.${data.aws_route53_zone.domain.name}"
-    search_domains  = "${data.aws_route53_zone.domain.name}"
+    hostname        = "${var.hostname}"
+    search_domains  = "${var.search_domains}"
     ssh_user        = "${var.ssh_user}"
   }
 }
